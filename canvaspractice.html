@@ -2,22 +2,34 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<title>Canvas</title>
 	<style type ="text/css">
 		canvas{
 			border:1px solid black;
 		}
+		#canvas {
+			height: 80vh;
+			width: 80vw;
+		}
 	</style>
 </head>
 <body>
-	<canvas id="canvas" width="500" height="500">
+
+	<div id = "canvas">
+	<canvas id="canvas">
   		An alternative text describing what your canvas displays. 
 	</canvas>
+	</div>
 
 	<input name="Color Picker" type="color" id = "colorPicker"/ value="#000000">
 
 	<script>
 		var canvas = document.querySelector('canvas');
+		canvas.style.width ='100%';
+		canvas.style.height ='100%';
+		canvas.width  = canvas.offsetWidth;
+		canvas.height = canvas.offsetHeight;
 		var ctx = canvas.getContext('2d');
 		var colorPicker = document.getElementById('colorPicker');
 		console.log(colorPicker.value);
@@ -74,7 +86,7 @@
 				radius += 5;
 			}
 
-			else if (e.keyCode == '40') {
+			else if (e.keyCode == '40' && (radius-5 > 0)) {
 				radius -= 5;
 			}
 			
