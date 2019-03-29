@@ -14,9 +14,13 @@
   		An alternative text describing what your canvas displays. 
 	</canvas>
 
+	<input name="Color Picker" type="color" id = "colorPicker"/ value="#000000">
+
 	<script>
 		var canvas = document.querySelector('canvas');
 		var ctx = canvas.getContext('2d');
+		var colorPicker = document.getElementById('colorPicker');
+		console.log(colorPicker.value);
 		var x = 0
 		var y = 0
 		var color = "red"
@@ -30,12 +34,24 @@
 		}
 
 		window.addEventListener('mousemove', function (e) {
-			console.log(e.pageX);
-			console.log(e.pageY);
+			//console.log(e.pageX);
+			//console.log(e.pageY);
 			x = e.pageX;
 			y = e.pageY;
 			draw();
 		})
+
+		window.addEventListener('touchmove', function (e) {
+			//console.log(e.pageX);
+			//console.log(e.pageY);
+			x = e.pageX;
+			y = e.pageY;
+			draw();
+		})
+
+		window.addEventListener('orientationchange', function(){
+			  ctx.clearRect(0, 0, canvas.width, canvas.height);
+		});
 
 		window.addEventListener('keyup', function(e) {
 			//console.log(e.keyCode);
@@ -62,8 +78,26 @@
 				radius -= 5;
 			}
 			
+			else if (e.keyCode == '32') {
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+			}
+			
 			draw();
 		})
+
+		// colorPicker.addEventListener("input", updateFirst, false);
+		// colorPicker.addEventListener("change", watchColorPicker, false);
+
+		// function watchColorPicker(e) {
+		// 	document.querySelector("canvas").forEach(function(canvas))
+
+		// }
+
+		colorPicker.addEventListener('change', function(e) {
+		 	console.log(colorPicker.value);
+		 	color = colorPicker.value;
+		});
+
 		
 
 	</script>
